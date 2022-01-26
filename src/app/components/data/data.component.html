@@ -1,0 +1,111 @@
+<h4 class="bg-primary p-3 text-center">Formularios <small>data</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()" novalidate>
+
+    <div formGroupName="nombrecompleto">
+        <!--[ngClass]="{'was-validated': (forma.controls['nombre'].errors?.
+        ['required'] || forma.controls['nombre'].errors?.['minlength']) && forma.controls['nombre'].touched}"-->
+
+        <div class="form-group row" [ngClass]="{'was-validated': (forma.controls['nombrecompleto'].get('nombre')?.errors?.
+        ['required'] || forma.controls['nombrecompleto'].get('nombre')?.errors?.['minlength'])}">
+            <label class="col-2 col-form-label mt-2">Nombre</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" required minlength="3">
+
+                <div class="form-group row form-control-feedback" *ngIf="
+                forma.controls['nombrecompleto'].get('nombre')?.errors?.['required']
+              ">
+                    El nombre es necesario.
+                </div>
+                <div class="form-group row form-control-feedback" *ngIf="
+                forma.controls['nombrecompleto'].get('nombre')?.errors?.['minlength']">
+                    Al menos 3 caracteres.
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{'was-validated': (forma.controls['nombrecompleto'].get('apellido')?.errors?.
+        ['required'] || forma.controls['nombrecompleto'].get('apellido')?.errors?.['minlength'])}">
+            <label class="col-2 col-form-label mt-2">Apellido</label>
+            <div class="col-8">
+                <input class="form-control mt-2" type="text" placeholder="Apellido" formControlName="apellido" required minlength="3">
+
+                <div class="form-group row form-control-feedback" *ngIf="
+                forma.controls['nombrecompleto'].get('apellido')?.errors?.['required']">
+                    El apellido es necesario.
+                </div>
+                <div class="form-group row form-control-feedback" *ngIf="
+                forma.controls['nombrecompleto'].get('apellido')?.errors?.['minlength']">
+                    Al menos 3 caracteres.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group row" [ngClass]="{'was-validated': (forma.controls['telefono']?.errors?.
+    ['required'] || forma.controls['telefono']?.errors?.['pattern'])}">
+        <label class="col-2 col-form-label mt-2">Telefono</label>
+        <div class="col-md-8">
+            <input class="form-control mt-2" type="tel" placeholder="Telefono" #telefono pattern="[1-9]\d{6,10}" formControlName="telefono" required>
+
+            <div class="form-group row form-control-feedback" *ngIf="
+            forma.controls['telefono'].errors?.['required']">
+                El telefono es necesario.
+            </div>
+
+            <div class="form-group row form-control-feedback" *ngIf="
+            forma.controls['telefono'].errors?.['pattern']">
+                Debe ingresar un numero.
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group row" [ngClass]="{'was-validated': (forma.controls['correo']?.errors?.
+    ['required'] || forma.controls['correo']?.errors?.['pattern'])}">
+        <label class="col-2 col-form-label mt-2">Correo</label>
+        <div class="col-md-8">
+            <input class="form-control mt-2" type="email" placeholder="Correo electrónico" formControlName="correo" required>
+
+            <div class="form-group row form-control-feedback" *ngIf="
+            forma.controls['correo'].errors?.['required']">
+                El correo es necesario.
+            </div>
+
+            <div class="form-group row form-control-feedback" *ngIf="
+            forma.controls['correo'].errors?.['pattern']">
+                Formato de correo invalido.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label mt-2">Password</label>
+        <div class="col-md-8">
+            <input class="form-control" type="password" placeholder="password" formControlName="password1">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label mt-2">Repetir Password</label>
+        <div class="col-md-8">
+            <input class="form-control" type="password" placeholder="Repetir Contraseña" formControlName="password2">
+        </div>
+    </div>
+
+
+    <div class="form-group row ">
+        <label class="col-2 col-form-label ">&nbsp;</label>
+        <div class="input-group col-md-8 ">
+            <button type="submit " class="btn btn-outline-primary ">
+        Guardar
+      </button>
+        </div>
+    </div>
+
+</form>
